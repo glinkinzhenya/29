@@ -137,8 +137,8 @@ class User {
 	render() {
 		let classAdmin;
 		if (this.role !== "student") {
-			classAdmin = "admin--info"; 
-}
+			classAdmin = "admin--info";
+		};
 		return `
            <div class="user">
             <div class="user__info">
@@ -155,7 +155,7 @@ class User {
                 </div>
             </div>
 			<div class="user__courses ${classAdmin}">
-	       ${huy}
+	       ${level}
 		   </div>
 		</div>`
 	};
@@ -186,9 +186,6 @@ class Lector extends User {
 		let man = this.role;
 		let mas = [];
 		this.courses.forEach(function (i) {
-			console.log(i);
-			console.log(i.score);
-			console.log(i.studentsScore);
 			mas.push(`
 			<div class="user__courses--course ${man}">
 				<p>Title: <b>${i.title}</b></p>
@@ -197,28 +194,8 @@ class Lector extends User {
 			</div>`)
 		});
 		return mas.join("");
-
-
-
-		// return ` 
-		// <div class="user__courses admin--info">
-        //         <div class="user__courses--course lector">
-        //             <p>Title: <b>Front-end Pro</b></p>
-        //             <p>Lector's score: <span class="satisfactory">Satisfactory</span></p>
-        //             <p>Average student's score: <span class="very-good">Very Good</span></p>
-        //         </div>
-        //         <div class="user__courses--course lector">
-        //             <p>Title: <b>Front-end Basic</b></p>
-        //             <p>Lector's score: <span class="very-good">Very Good</span></p>
-        //             <p>Average student's score: <span class="satisfactory">Satisfactory</span></p>
-        //         </div>
-		// 		</div>`
 	};
 };
-
-
-
-
 
 class Admin extends User {
 	constructor(name, age, img, role, courses) {
@@ -230,9 +207,6 @@ class Admin extends User {
 		let man = this.role;
 		let mas = [];
 		this.courses.forEach(function (i) {
-			console.log(i);
-			console.log(i.score);
-			console.log(i.studentsScore);
 			mas.push(`
 			<div class="user__courses--course ${man}">
 					<p>Title: <b>${i.title}</b></p>
@@ -241,16 +215,11 @@ class Admin extends User {
 				</div>`)
 		});
 		return mas.join("");
-
-
-
-
-
-	}
+	};
 };
 
 let mass = [];
-let huy = [];
+let level = [];
 function constructor(users) {
 	users
 		.map(function (i) {
@@ -259,21 +228,17 @@ function constructor(users) {
 			if (i.role === "admin") return new Admin(i.name, i.age, i.img, i.role, i.courses);
 		})
 		.forEach(function (i) {
-			huy = [];
+			level = [];
 			if (!i.courses)
 				mass.push(i.render());
 			else {
-				huy = i.renderCourses(gradation);
-				mass.push(i.render(huy));
+				level = i.renderCourses(gradation);
+				mass.push(i.render(level));
 			};
-		})
+		});
 };
 
-
 constructor(users);
-
-document.write(`<div class="users">${mass.join("")}</div>`);
-
 
 function upString(item) {
 	if (item) {
@@ -288,8 +253,8 @@ function upString(item) {
 			}
 		}
 		return slovo.replace("-", " ");
-	}
-}
+	};
+};
 
 function numbers(item, grad) {
 	let status;
@@ -303,4 +268,6 @@ function numbers(item, grad) {
 		status = grad[100];
 	};
 	return status;
-}
+};
+
+document.write(`<div class="users">${mass.join("")}</div>`);
