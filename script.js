@@ -135,6 +135,7 @@ class User {
 	};
 
 	render() {
+
 		return `
            <div class="user">
             <div class="user__info">
@@ -146,7 +147,7 @@ class User {
                     </div>
                 </div>
                 <div class="user__info--role ${this.role}">
-                    <img src="image/${this.role}.svg" alt=${this.role} height="25">
+                    <img src="image/${this.role}.svg" alt="${this.role}" height="25">
                     <p>${this.role}</p>
                 </div>
             </div>
@@ -156,18 +157,13 @@ class User {
 		</div>`
 	};
 
-	renderCourses() {
+	renderCourses(grad) {
 		let mas = [];
-
 		this.courses.forEach(function (i) {
-			console.log(gradation[i.mark]);
-			console.log(upString(gradation[i.mark]));
-		
-		mas.push(`<p class="user__courses--course student">${i.title}
-				   <span class="${gradation[i.mark]}">${upString(gradation[i.mark])}</span>
+			mas.push(`<p class="user__courses--course student">${i.title}
+				   <span class="${numbers(i.mark, grad)}">${upString(numbers(i.mark, grad))}</span>
                   </p>`)
 		});
-		console.log(mas);
 		return mas.join("");
 	};
 };
@@ -183,8 +179,13 @@ class Lector extends User {
 		super(name, age, img, role, courses);
 	};
 
-	renderCourses() {
-		return ` <div class="user__courses admin--info">
+	renderCourses(grad) {
+		console.log();
+		return ` 
+
+		
+		
+		<div class="user__courses admin--info">
                 <div class="user__courses--course lector">
                     <p>Title: <b>Front-end Pro</b></p>
                     <p>Lector's score: <span class="satisfactory">Satisfactory</span></p>
@@ -200,12 +201,15 @@ class Lector extends User {
 };
 
 
+
+
+
 class Admin extends User {
 	constructor(name, age, img, role, courses) {
 		super(name, age, img, role, courses);
 	};
 
-	renderCourses() {
+	renderCourses(grad) {
 		return `<div class="user__courses admin--info">
                 <div class="user__courses--course admin">
                     <p>Title: <b>Front-end Pro</b></p>
@@ -224,8 +228,6 @@ class Admin extends User {
 let mass = [];
 let huy = [];
 function constructor(users) {
-
-	
 	users
 		.map(function (i) {
 			if (i.role === "student") return new Student(i.name, i.age, i.img, i.role, i.courses);
@@ -235,12 +237,11 @@ function constructor(users) {
 		.forEach(function (i) {
 			huy = [];
 			if (!i.courses)
-			mass.push(i.render());
+				mass.push(i.render());
 			else {
-				huy = i.renderCourses();
+				huy = i.renderCourses(gradation);
 				mass.push(i.render(huy));
 			};
-			
 		})
 };
 
@@ -264,4 +265,18 @@ function upString(item) {
 		}
 		return slovo.replace("-", " ");
 	}
+}
+
+function numbers(item, grad) {
+	let status;
+	if (item <= 20) {
+		status = grad[20];
+	} else if (item > 20 && item <= 55) {
+		status = grad[55];
+	} else if (item > 55 && item <= 85) {
+		status = grad[85];
+	} else if (item > 85 && item <= 100) {
+		status = grad[100];
+	};
+	return status;
 }
