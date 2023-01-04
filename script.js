@@ -135,7 +135,10 @@ class User {
 	};
 
 	render() {
-
+		let classAdmin;
+		if (this.role !== "student") {
+			classAdmin = "admin--info"; 
+}
 		return `
            <div class="user">
             <div class="user__info">
@@ -151,7 +154,7 @@ class User {
                     <p>${this.role}</p>
                 </div>
             </div>
-			<div class="user__courses">
+			<div class="user__courses ${classAdmin}">
 	       ${huy}
 		   </div>
 		</div>`
@@ -180,23 +183,36 @@ class Lector extends User {
 	};
 
 	renderCourses(grad) {
-		console.log();
-		return ` 
+		let man = this.role;
+		let mas = [];
+		this.courses.forEach(function (i) {
+			console.log(i);
+			console.log(i.score);
+			console.log(i.studentsScore);
+			mas.push(`
+			<div class="user__courses--course ${man}">
+				<p>Title: <b>${i.title}</b></p>
+				<p>${man}'s score: <span class="${numbers(i.score, grad)}">${upString(numbers(i.score, grad))}</span></p>
+				<p>Average student's score: <span class="${numbers(i.studentsScore, grad)}">${upString(numbers(i.studentsScore, grad))}</span></p>
+			</div>`)
+		});
+		return mas.join("");
 
-		
-		
-		<div class="user__courses admin--info">
-                <div class="user__courses--course lector">
-                    <p>Title: <b>Front-end Pro</b></p>
-                    <p>Lector's score: <span class="satisfactory">Satisfactory</span></p>
-                    <p>Average student's score: <span class="very-good">Very Good</span></p>
-                </div>
-                <div class="user__courses--course lector">
-                    <p>Title: <b>Front-end Basic</b></p>
-                    <p>Lector's score: <span class="very-good">Very Good</span></p>
-                    <p>Average student's score: <span class="satisfactory">Satisfactory</span></p>
-                </div>
-				</div>`
+
+
+		// return ` 
+		// <div class="user__courses admin--info">
+        //         <div class="user__courses--course lector">
+        //             <p>Title: <b>Front-end Pro</b></p>
+        //             <p>Lector's score: <span class="satisfactory">Satisfactory</span></p>
+        //             <p>Average student's score: <span class="very-good">Very Good</span></p>
+        //         </div>
+        //         <div class="user__courses--course lector">
+        //             <p>Title: <b>Front-end Basic</b></p>
+        //             <p>Lector's score: <span class="very-good">Very Good</span></p>
+        //             <p>Average student's score: <span class="satisfactory">Satisfactory</span></p>
+        //         </div>
+		// 		</div>`
 	};
 };
 
@@ -210,19 +226,27 @@ class Admin extends User {
 	};
 
 	renderCourses(grad) {
-		return `<div class="user__courses admin--info">
-                <div class="user__courses--course admin">
-                    <p>Title: <b>Front-end Pro</b></p>
-                    <p>Admin's score: <span class="satisfactory">Satisfactory</span></p>
-                    <p>Lector: <b>Leo Smith</b></p>
-                </div>
-                <div class="user__courses--course admin">
-                    <p>Title: <b>Front-end Basic</b></p>
-                    <p>Admin's score: <span class="very-good">Very Good</span></p>
-                    <p>Lector: <b>Leo Smith</b></p>
-                </div>
-            </div>`
-	};
+
+		let man = this.role;
+		let mas = [];
+		this.courses.forEach(function (i) {
+			console.log(i);
+			console.log(i.score);
+			console.log(i.studentsScore);
+			mas.push(`
+			<div class="user__courses--course ${man}">
+					<p>Title: <b>${i.title}</b></p>
+					<p>${man}'s score: <span class="${numbers(i.score, grad)}">${upString(numbers(i.score, grad))}</span></p>
+					<p>Lector: <b>${i.lector}</b></p>
+				</div>`)
+		});
+		return mas.join("");
+
+
+
+
+
+	}
 };
 
 let mass = [];
