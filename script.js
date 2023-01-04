@@ -15,7 +15,7 @@ const users = [
 	{
 		name: "Jack Smith",
 		age: 23,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922522.svg",
+		img: "image/man.svg",
 		role: "student",
 		courses: [
 			{
@@ -31,13 +31,13 @@ const users = [
 	{
 		name: "Amal Smith",
 		age: 20,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922656.svg",
+		img: "image/man.svg",
 		role: "student"
 	},
 	{
 		name: "Noah Smith",
 		age: 43,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922616.svg",
+		img: "image/man.svg",
 		role: "student",
 		courses: [
 			{
@@ -49,7 +49,7 @@ const users = [
 	{
 		name: "Charlie Smith",
 		age: 18,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922688.svg",
+		img: "image/man.svg",
 		role: "student",
 		courses: [
 			{
@@ -64,7 +64,7 @@ const users = [
 	{
 		name: "Emily Smith",
 		age: 30,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922565.svg",
+		img: "image/man.svg",
 		role: "admin",
 		courses: [
 			{
@@ -86,7 +86,7 @@ const users = [
 	{
 		name: "Leo Smith",
 		age: 53,
-		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922719.svg",
+		img: "image/man.svg",
 		role: "lector",
 		courses: [
 			{
@@ -101,7 +101,7 @@ const users = [
 			}
 		]
 	}
-]
+];
 
 
 // Файл script.js содержит данные:
@@ -143,7 +143,7 @@ class User {
            <div class="user">
             <div class="user__info">
                 <div class="user__info--data">
-                    <img src="image/man.svg" alt="${this.name}" height="50">
+                    <img src="${this.img}" alt="${this.name}" height="50">
                     <div class="user__naming">
                         <p>Name: <b>${this.name}</b></p>
                         <p>Age: <b>${this.age}</b></p>
