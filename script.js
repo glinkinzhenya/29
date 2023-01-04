@@ -85,7 +85,7 @@ const users = [
 	},
 	{
 		name: "Leo Smith",
-		age: 253,
+		age: 53,
 		img: "https://www.flaticon.com/svg/static/icons/svg/2922/2922719.svg",
 		role: "lector",
 		courses: [
