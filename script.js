@@ -91,13 +91,13 @@ const users = [
 		courses: [
 			{
 				"title": "Front-end Pro",
-				"score": 78,
-				"studentsScore": 79
+				"score": 8,
+				"studentsScore": 50
 			},
 			{
 				"title": "Java Enterprise",
 				"score": 85,
-				"studentsScore": 85
+				"studentsScore": 100
 			}
 		]
 	}
